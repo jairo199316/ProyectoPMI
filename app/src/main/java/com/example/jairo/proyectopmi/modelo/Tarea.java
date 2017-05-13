@@ -1,5 +1,7 @@
 package com.example.jairo.proyectopmi.modelo;
 
+import android.widget.Spinner;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,8 +14,8 @@ public class Tarea implements Serializable {
     private int id;
     private String nombre;
     private double porcentaje;
-    private Date fechaInicio;
-    private Date fechaFin;
+    private String fechaInicio;
+    private String fechaFin;
     private String estado;
     private Actividad actividad;
 
@@ -21,7 +23,7 @@ public class Tarea implements Serializable {
     public Tarea() {
     }
 
-    public Tarea(int id, String nombre, double porcentaje, Date fechaInicio, Date fechaFin, String estado, Actividad actividad) {
+    public Tarea(int id, String nombre, double porcentaje, String fechaInicio, String fechaFin, String estado, Actividad actividad) {
         this.id = id;
         this.nombre = nombre;
         this.porcentaje = porcentaje;
@@ -55,19 +57,19 @@ public class Tarea implements Serializable {
         this.porcentaje = porcentaje;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public String getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
     }
 

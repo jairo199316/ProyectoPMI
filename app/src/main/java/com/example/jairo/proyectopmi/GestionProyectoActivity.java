@@ -1,9 +1,10 @@
 package com.example.jairo.proyectopmi;
 
+import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.example.jairo.proyectopmi.util.Util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -30,7 +32,64 @@ public class GestionProyectoActivity extends AppCompatActivity {
         fechaFin = (EditText) findViewById(R.id.fechaFinProyecto);
         etapa = (EditText) findViewById(R.id.etapaProyecto);
         ctrlProyecto = new CtrlProyecto(this);
+        configurarFechasEdittext();
     }
+
+    /**
+     * configura un los edittext de fecha para un calendario
+     */
+    public void configurarFechasEdittext() {
+        fechaInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                //To show current date in the datepicker
+                Calendar mcurrentDate = Calendar.getInstance();
+                DatePickerDialog mDatePicker = new DatePickerDialog(GestionProyectoActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+                        selectedmonth = selectedmonth + 1;
+                        String dia = String.valueOf(selectedday);
+                        String mes = String.valueOf(selectedmonth);
+                        if (selectedday < 10) {
+                            dia = 0 + "" + dia;
+                        }
+                        if (selectedmonth < 10) {
+                            mes = 0 + "" + mes;
+                        }
+                        fechaInicio.setText(dia + "/" + mes + "/" + selectedyear);
+                    }
+                }, mcurrentDate.get(Calendar.YEAR), mcurrentDate.get(Calendar.MONTH), mcurrentDate.get(Calendar.DAY_OF_MONTH));
+                mDatePicker.setTitle("Select date");
+                mDatePicker.show();
+            }
+        });
+
+        fechaFin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                //To show current date in the datepicker
+                Calendar mcurrentDate = Calendar.getInstance();
+                DatePickerDialog mDatePicker = new DatePickerDialog(GestionProyectoActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+                        selectedmonth = selectedmonth + 1;
+                        String dia = String.valueOf(selectedday);
+                        String mes = String.valueOf(selectedmonth);
+                        if (selectedday < 10) {
+                            dia = 0 + "" + dia;
+                        }
+                        if (selectedmonth < 10) {
+                            mes = 0 + "" + mes;
+                        }
+                        fechaFin.setText(dia + "/" + mes + "/" + selectedyear);
+                    }
+                }, mcurrentDate.get(Calendar.YEAR), mcurrentDate.get(Calendar.MONTH), mcurrentDate.get(Calendar.DAY_OF_MONTH));
+                mDatePicker.setTitle("Select date");
+                mDatePicker.show();
+            }
+        });
+    }
+
 
     /**
      * registra un proyecto en la bd

@@ -8,53 +8,62 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.jairo.proyectopmi.GestionCargoActivity"
+    tools:context=".GestionActividadActivity"
     android:weightSum="1">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gestion de cargos"
-        android:id="@+id/textView3"
+        android:text="Gestion de actividades"
+        android:id="@+id/textView6"
         android:layout_gravity="center_horizontal" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/nombreProyecto"
+        android:id="@+id/nombreProyGesAct"
         android:layout_gravity="center_horizontal"
-        android:editable="false"
-        android:enabled="true" />
+        android:enabled="true"
+        android:editable="false" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/nombreCargo"
+        android:id="@+id/nombreGesAct"
         android:layout_gravity="center_horizontal"
-        android:hint="Nombre cargo" />
+        android:hint="Nombre actividad" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/descripcion"
+        android:id="@+id/descripcionGesAct"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.27"
-        android:hint="Descripcion" />
+        android:layout_weight="0.26"
+        android:hint="Descripcion actividad" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/horarioCargo"
+        android:id="@+id/responsableGesAct"
         android:layout_gravity="center_horizontal" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="date"
         android:ems="10"
-        android:id="@+id/salarioCargo"
+        android:id="@+id/fechaInicioGesAct"
         android:layout_gravity="center_horizontal"
-        android:hint="Salario" />
+        android:hint="Fecha inicio" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/fechaFinGesAct"
+        android:layout_gravity="center_horizontal"
+        android:hint="Fecha fin" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -66,15 +75,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Registrar"
-            android:id="@+id/registrarCargo"
-            android:onClick="registrarCargo" />
+            android:id="@+id/resgitrarGesAct"
+            android:onClick="registrarActividad" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="buscar"
-            android:id="@+id/buscarCargo"
-            android:onClick="buscarCargo" />
+            android:text="Buscar"
+            android:id="@+id/buscarGesAct"
+            android:onClick="buscarActividad" />
     </LinearLayout>
 
     <LinearLayout
@@ -87,14 +96,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Editar"
-            android:id="@+id/editarCargo"
-            android:onClick="editarCargo" />
+            android:id="@+id/editarGesAct"
+            android:onClick="modificarActividad" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Eliminar"
-            android:id="@+id/eliminarCargo"
-            android:onClick="eliminarCargo" />
+            android:id="@+id/eliminarGesAct"
+            android:onClick="eliminarActividad" />
     </LinearLayout>
 </LinearLayout>

@@ -18,7 +18,12 @@
         <activity android:name=".RegistroUsuarioActivity" />
         <activity android:name=".MpplDirectorActivity" />
         <activity android:name=".GestionProyectoActivity" />
-        <activity android:name=".GestionCargoActivity"></activity>
+        <activity android:name=".GestionCargoActivity" />
+        <activity android:name=".MpplIntegranteActivity" />
+        <activity android:name=".GestionIntegranteActivity" />
+        <activity android:name=".GestionActividadActivity" />
+        <activity android:name=".GestionTareaActivity" />
+        <activity android:name=".GestionRecursoActivity"></activity>
     </application>
 
 </manifest>

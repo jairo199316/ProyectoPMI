@@ -13,19 +13,21 @@ public class Actividad implements Serializable {
     private String nombre;
     private Integrante responsable;
     private Proyecto proyecto;
-    private Date fechaInicio;
-    private Date fechaFin;
+    private String fechaInicio;
+    private String fechaFin;
+    private String descripcion;
 
     public Actividad() {
     }
 
-    public Actividad(int id, String nombre, Integrante responsable, Proyecto proyecto, Date fechaInicio, Date fechaFin) {
+    public Actividad(int id, String nombre, Integrante responsable, Proyecto proyecto, String fechaInicio, String fechaFin, String descripcion) {
         this.id = id;
         this.nombre = nombre;
         this.responsable = responsable;
         this.proyecto = proyecto;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+        this.descripcion = descripcion;
     }
 
     public int getId() {
@@ -60,19 +62,27 @@ public class Actividad implements Serializable {
         this.proyecto = proyecto;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public String getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

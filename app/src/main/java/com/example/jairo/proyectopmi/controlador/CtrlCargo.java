@@ -56,6 +56,16 @@ public class CtrlCargo {
     }
 
     /**
+     * busca un cargo por nombre y proyecto
+     *
+     * @param codigo el nombre del cargo a buscar*
+     * @return el cargo si lo encuentra, de lo contrario null
+     */
+    public Cargo buscarCargo(int codigo) {
+        return dao.buscar(codigo);
+    }
+
+    /**
      * elimina un cargo
      *
      * @param cargo el cargo a eliminar
@@ -89,5 +99,19 @@ public class CtrlCargo {
     public List<Cargo> listarCargos() {
         return dao.listar();
     }
+
+    /**
+     * lista todos los cargos registrados
+     *
+     * @return una lista con todos los cargos
+     */
+    public List<Cargo> listarCargos(int proyectoId) {
+        return dao.listar(proyectoId);
+    }
+
+
+
+
+
 
 }

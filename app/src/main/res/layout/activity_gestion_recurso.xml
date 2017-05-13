@@ -8,53 +8,54 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.jairo.proyectopmi.GestionCargoActivity"
+    tools:context="com.example.jairo.proyectopmi.GestionRecursoActivity"
     android:weightSum="1">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gestion de cargos"
-        android:id="@+id/textView3"
+        android:text="Gestion de recursos"
+        android:id="@+id/textView8"
         android:layout_gravity="center_horizontal" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/nombreProyecto"
-        android:layout_gravity="center_horizontal"
+        android:id="@+id/nombreProyectoGestRec"
+        android:enabled="true"
         android:editable="false"
-        android:enabled="true" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/nombreCargo"
-        android:layout_gravity="center_horizontal"
-        android:hint="Nombre cargo" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/descripcion"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.27"
-        android:hint="Descripcion" />
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/horarioCargo"
         android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nombreGestRec"
+        android:layout_gravity="center_horizontal"
+        android:hint="Nombre recurso" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/salarioCargo"
+        android:id="@+id/cantidadGestRec"
         android:layout_gravity="center_horizontal"
-        android:hint="Salario" />
+        android:hint="Cantidad recurso" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/descripcionGestRec"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.15"
+        android:hint="Descripcion recurso" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ubicacionGestRec"
+        android:layout_gravity="center_horizontal"
+        android:hint="Ubicacion recurso" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -66,15 +67,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Registrar"
-            android:id="@+id/registrarCargo"
-            android:onClick="registrarCargo" />
+            android:id="@+id/registrarGestRec"
+            android:onClick="agregarRecurso" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="buscar"
-            android:id="@+id/buscarCargo"
-            android:onClick="buscarCargo" />
+            android:text="Buscar"
+            android:id="@+id/buscarGestRec"
+            android:onClick="buscarRecurso" />
     </LinearLayout>
 
     <LinearLayout
@@ -87,14 +88,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Editar"
-            android:id="@+id/editarCargo"
-            android:onClick="editarCargo" />
+            android:id="@+id/editarGestRec"
+            android:onClick="editarRecurso" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Eliminar"
-            android:id="@+id/eliminarCargo"
-            android:onClick="eliminarCargo" />
+            android:id="@+id/eliminarGestRec"
+            android:onClick="eliminarRecurso" />
     </LinearLayout>
 </LinearLayout>

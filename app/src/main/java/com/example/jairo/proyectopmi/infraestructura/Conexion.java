@@ -69,9 +69,10 @@ public class Conexion extends SQLiteOpenHelper {
                 "nombre TEXT NOT NULL, " +
                 "cantidad NUMERIC NOT NULL,  " +
                 "descripcion TEXT NOT NULL,  " +
-                "ubicacion_id NUMERIC NOT NULL,  " +
-                "PRIMARY KEY(id),  " +
-                "FOREIGN KEY(ubicacion_id) REFERENCES Ubicacion(id) " +
+                "ubicacion TEXT NOT NULL,  " +
+                "proyecto_id NUMERIC NOT NULL,  " +
+                "PRIMARY KEY(id), " +
+                "FOREIGN KEY(proyecto_id) REFERENCES Proyecto(id) " +
                 ")");
 
         db.execSQL("CREATE TABLE Proyecto ( " +
@@ -122,6 +123,7 @@ public class Conexion extends SQLiteOpenHelper {
                 "proyecto_id NUMERIC NOT NULL,  " +
                 "fechaInicio TEXT NOT NULL,  " +
                 "fechaFin TEXT NOT NULL,  " +
+                "descripcion TEXT NOT NULL,  " +
                 "PRIMARY KEY(id),  " +
                 "FOREIGN KEY(responsable_id) REFERENCES Integrante(usuario_id), " +
                 "FOREIGN KEY(proyecto_id) REFERENCES Proyecto(id) " +

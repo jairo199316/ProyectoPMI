@@ -53,35 +53,39 @@ public class GestionCargoActivity extends AppCompatActivity {
      * @param view
      */
     public void registrarCargo(View view) {
-        if (nombreCargo.getText().toString().equals("") ||
-                descripcionCargo.getText().toString().equals("") || salarioCargo.getText().toString().equals("")) {
-            Toast.makeText(getApplicationContext(), "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
+        if (Util.proyecto == null) {
+            Toast.makeText(getApplicationContext(), "Usted no tiene proyectos registrados", Toast.LENGTH_SHORT).show();
         } else {
-            String des = descripcionCargo.getText().toString();
-            String nombre = nombreCargo.getText().toString();
-            double salario = Double.parseDouble(salarioCargo.getText().toString());
-            String horario = horarioCargo.getSelectedItem().toString();
-            List<Cargo> cargos = controlador.listarCargos();
-            int idCargo = 0;
-            if (!cargos.isEmpty()) {
-                idCargo = cargos.get(cargos.size() - 1).getId() + 1;
-            }
-            boolean validarNombre = true;
-            for (int i = 0; i < cargos.size(); i++) {
-                if (cargos.get(i).getNombre().equals(nombre) &&
-                        cargos.get(i).getProyecto().getNombre().equals(Util.getProyecto().getNombre())) {
-                    validarNombre = false;
-                }
-            }
-            if (validarNombre) {
-                if (controlador.guardarCargo(idCargo, nombre, des, salario, horario, Util.getProyecto())) {
-                    Toast.makeText(getApplicationContext(), "El cargo ha sido registrado", Toast.LENGTH_SHORT).show();
-                    limpiarCampos();
-                } else {
-                    Toast.makeText(getApplicationContext(), "No ha sido posible registrar el cargo", Toast.LENGTH_SHORT).show();
-                }
+            if (nombreCargo.getText().toString().equals("") ||
+                    descripcionCargo.getText().toString().equals("") || salarioCargo.getText().toString().equals("")) {
+                Toast.makeText(getApplicationContext(), "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), "Ya se encuentra un cargo con este nombre", Toast.LENGTH_SHORT).show();
+                String des = descripcionCargo.getText().toString();
+                String nombre = nombreCargo.getText().toString();
+                double salario = Double.parseDouble(salarioCargo.getText().toString());
+                String horario = horarioCargo.getSelectedItem().toString();
+                List<Cargo> cargos = controlador.listarCargos();
+                int idCargo = 0;
+                if (!cargos.isEmpty()) {
+                    idCargo = cargos.get(cargos.size() - 1).getId() + 1;
+                }
+                boolean validarNombre = true;
+                for (int i = 0; i < cargos.size(); i++) {
+                    if (cargos.get(i).getNombre().equals(nombre) &&
+                            cargos.get(i).getProyecto().getNombre().equals(Util.getProyecto().getNombre())) {
+                        validarNombre = false;
+                    }
+                }
+                if (validarNombre) {
+                    if (controlador.guardarCargo(idCargo, nombre, des, salario, horario, Util.getProyecto())) {
+                        Toast.makeText(getApplicationContext(), "El cargo ha sido registrado", Toast.LENGTH_SHORT).show();
+                        limpiarCampos();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "No ha sido posible registrar el cargo", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Ya se encuentra un cargo con este nombre", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
@@ -92,17 +96,25 @@ public class GestionCargoActivity extends AppCompatActivity {
      * @param view
      */
     public void buscarCargo(View view) {
-        if (nombreCargo.getText().toString().equals("")) {
-            Toast.makeText(getApplicationContext(), "Debe ingresar un nombre", Toast.LENGTH_SHORT).show();
+        if (Util.proyecto == null) {
+            Toast.makeText(getApplicationContext(), "Usted no tiene proyectos registrados", Toast.LENGTH_SHORT).show();
         } else {
-            String nombreC = nombreCargo.getText().toString();
-            Cargo cargo = controlador.buscarCargo(nombreC, Util.getProyecto());
-            if (cargo != null) {
-                salarioCargo.setText(String.valueOf(cargo.getSalario()));
-                descripcionCargo.setText(cargo.getDescripcion());
-                //horarioCargo.setSelection();
+            if (nombreCargo.getText().toString().equals("")) {
+                Toast.makeText(getApplicationContext(), "Debe ingresar un nombre", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), "No se ha encontrado un cargo con el nombre ingresado", Toast.LENGTH_SHORT).show();
+                String nombreC = nombreCargo.getText().toString();
+                Cargo cargo = controlador.buscarCargo(nombreC, Util.getProyecto());
+                if (cargo != null) {
+                    salarioCargo.setText(String.valueOf(cargo.getSalario()));
+                    descripcionCargo.setText(cargo.getDescripcion());
+                    for (int i = 0; i < horarioCargo.getCount(); i++) {
+                        if (horarioCargo.getItemAtPosition(i).toString().equals(cargo.getHorario())) {
+                            horarioCargo.setSelection(i);
+                        }
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "No se ha encontrado un cargo con el nombre ingresado", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
@@ -113,24 +125,28 @@ public class GestionCargoActivity extends AppCompatActivity {
      * @param view
      */
     public void editarCargo(View view) {
-        if (nombreCargo.getText().toString().equals("") || descripcionCargo.getText().toString().equals("") ||
-                salarioCargo.getText().toString().equals("")) {
-            Toast.makeText(getApplicationContext(), "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
+        if (Util.proyecto == null) {
+            Toast.makeText(getApplicationContext(), "Usted no tiene proyectos registrados", Toast.LENGTH_SHORT).show();
         } else {
-            String des = descripcionCargo.getText().toString();
-            String nombre = nombreCargo.getText().toString();
-            double salario = Double.parseDouble(salarioCargo.getText().toString());
-            String horario = horarioCargo.getSelectedItem().toString();
-            Cargo car = controlador.buscarCargo(nombre, Util.getProyecto());
-            if (car != null) {
-                if (controlador.modificarCargo(car.getId(), nombre, des, salario, horario, car.getProyecto())) {
-                    Toast.makeText(getApplicationContext(), "El cargo ha sido modificado", Toast.LENGTH_SHORT).show();
-                    limpiarCampos();
-                } else {
-                    Toast.makeText(getApplicationContext(), "No se ha encontrado un cargo con el nombre ingresado", Toast.LENGTH_SHORT).show();
-                }
+            if (nombreCargo.getText().toString().equals("") || descripcionCargo.getText().toString().equals("") ||
+                    salarioCargo.getText().toString().equals("")) {
+                Toast.makeText(getApplicationContext(), "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), "El cargo a modificar no existe", Toast.LENGTH_SHORT).show();
+                String des = descripcionCargo.getText().toString();
+                String nombre = nombreCargo.getText().toString();
+                double salario = Double.parseDouble(salarioCargo.getText().toString());
+                String horario = horarioCargo.getSelectedItem().toString();
+                Cargo car = controlador.buscarCargo(nombre, Util.getProyecto());
+                if (car != null) {
+                    if (controlador.modificarCargo(car.getId(), nombre, des, salario, horario, car.getProyecto())) {
+                        Toast.makeText(getApplicationContext(), "El cargo ha sido modificado", Toast.LENGTH_SHORT).show();
+                        limpiarCampos();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "No se ha encontrado un cargo con el nombre ingresado", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "El cargo a modificar no existe", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
@@ -141,20 +157,24 @@ public class GestionCargoActivity extends AppCompatActivity {
      * @param view
      */
     public void eliminarCargo(View view) {
-        if (nombreCargo.getText().toString().equals("")) {
-            Toast.makeText(getApplicationContext(), "Debe ingresar un nombre", Toast.LENGTH_SHORT).show();
+        if (Util.proyecto == null) {
+            Toast.makeText(getApplicationContext(), "Usted no tiene proyectos registrados", Toast.LENGTH_SHORT).show();
         } else {
-            String nombreC = nombreCargo.getText().toString();
-            Cargo car = controlador.buscarCargo(nombreC, Util.getProyecto());
-            if (car != null) {
-                if (controlador.eliminarCargo(car)) {
-                    limpiarCampos();
-                    Toast.makeText(getApplicationContext(), "El cargo ha sido eliminado", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "No ha sido posible eliminar el cargo", Toast.LENGTH_SHORT).show();
-                }
+            if (nombreCargo.getText().toString().equals("")) {
+                Toast.makeText(getApplicationContext(), "Debe ingresar un nombre", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), "El cargo a eliminar no existe", Toast.LENGTH_SHORT).show();
+                String nombreC = nombreCargo.getText().toString();
+                Cargo car = controlador.buscarCargo(nombreC, Util.getProyecto());
+                if (car != null) {
+                    if (controlador.eliminarCargo(car)) {
+                        limpiarCampos();
+                        Toast.makeText(getApplicationContext(), "El cargo ha sido eliminado", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "No ha sido posible eliminar el cargo", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "El cargo a eliminar no existe", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }

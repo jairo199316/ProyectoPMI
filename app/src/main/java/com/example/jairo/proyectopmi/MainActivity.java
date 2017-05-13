@@ -29,9 +29,7 @@ public class MainActivity extends AppCompatActivity {
         ctrlUsuario = new CtrlUsuario(this);
         ctrlProyecto = new CtrlProyecto(this);
         util = new Util();
-        for (int i = 0; i < ctrlProyecto.listarProyectos().size(); i++) {
-            Log.i("usuario", ctrlProyecto.listarProyectos().get(i).getUsuario() + "");
-        }
+
     }
 
     /**
@@ -55,10 +53,12 @@ public class MainActivity extends AppCompatActivity {
         Usuario usuario = ctrlUsuario.validarLog(correoUsu, pass);
         if (usuario != null) {
             Util.setUsuario(usuario);
-            Util.setProyecto(ctrlProyecto.buscarProyectoUsuario(usuario.getDocumento()));
             Intent intent = null;
             if (usuario.getTipoUsuario().equals("Director")) {
+                Util.setProyecto(ctrlProyecto.buscarProyectoUsuario(usuario.getDocumento()));
                 intent = new Intent(this, MpplDirectorActivity.class);
+            } else {
+                intent = new Intent(this, MpplIntegranteActivity.class);
             }
             limpiarCampos();
             startActivity(intent);

@@ -12,17 +12,19 @@ public class Recurso implements Serializable {
     private String nombre;
     private int cantidad;
     private String descripcion;
-    private Ubicacion ubicacion;
+    private String ubicacion;
+    private Proyecto proyecto;
 
     public Recurso() {
     }
 
-    public Recurso(int id, String nombre, int cantidad, String descripcion, Ubicacion ubicacion) {
+    public Recurso(int id, String nombre, int cantidad, String descripcion, String ubicacion, Proyecto proyecto) {
         this.id = id;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.descripcion = descripcion;
         this.ubicacion = ubicacion;
+        this.proyecto = proyecto;
     }
 
     public int getId() {
@@ -57,11 +59,19 @@ public class Recurso implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Ubicacion getUbicacion() {
+    public String getUbicacion() {
         return ubicacion;
     }
 
-    public void setUbicacion(Ubicacion ubicacion) {
+    public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
+    }
+
+    public Proyecto getProyecto() {
+        return proyecto;
+    }
+
+    public void setProyecto(Proyecto proyecto) {
+        this.proyecto = proyecto;
     }
 }

@@ -53,6 +53,14 @@ public class MpplDirectorActivity extends AppCompatActivity {
             intent = new Intent(this, GestionProyectoActivity.class);
         } else if (seleccion == 1) {
             intent = new Intent(this, GestionCargoActivity.class);
+        } else if (seleccion == 2) {
+            intent = new Intent(this, GestionIntegranteActivity.class);
+        } else if (seleccion == 3) {
+            intent = new Intent(this, GestionActividadActivity.class);
+        } else if (seleccion == 4) {
+            intent = new Intent(this, GestionTareaActivity.class);
+        } else if (seleccion == 5) {
+            intent = new Intent(this, GestionRecursoActivity.class);
         }
         startActivity(intent);
     }
